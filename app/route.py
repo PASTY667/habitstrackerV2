@@ -1,6 +1,20 @@
 from flask import Flask, render_template, request, redirect, url_for, jsonify
 from app import app, db
 from app.models import User
+import json
+
+def load_config():
+    with open('data/config.json', 'r') as file:
+        config = json.load(file)
+    return config
+
+# Utilisation
+config = load_config()
+secret_key = config['secret_key']
+database_uri = config['database_uri']
+api_key = config['api_key']
+# ...
+
 
 @app.route('/')
 def index():

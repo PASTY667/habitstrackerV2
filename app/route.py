@@ -2,6 +2,10 @@ from flask import Flask, render_template, request, redirect, url_for, jsonify
 
 app = Flask(__name__)
 
+@app.route('/')
+def index():
+    return render_template('index.html')
+
 # Liste en mémoire des noms d'utilisateurs enregistrés
 registered_usernames = ['admin', 'user1', 'user2']
 

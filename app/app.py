@@ -1,5 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, jsonify
-from app import app, db
+from flask import Flask, render_template, request, redirect, url_for, jsonify, app
 from app.models import db, User, Habit
 import json
 

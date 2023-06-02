@@ -1,1 +1,30 @@
- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tracker d'habitudes</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='habitstracker.css') }}"> <!-- Lien vers votre fichier CSS -->
+</head>
+<body>
+    <h1>Tracker d'habitudes</h1>
+
+    <div id="habitList">
+        <!-- Zone pour afficher les habitudes -->
+        {% for habit in habits %}
+            <div class="habit">
+                <input type="checkbox" id="{{ habit.id }}" {% if habit.done %}checked{% endif %}>
+                <label for="{{ habit.id }}">{{ habit.name }}</label>
+            </div>
+        {% endfor %}
+    </div>
+
+    <form id="addHabitForm">
+        <input type="text" id="habitNameInput" placeholder="Nom de l'habitude">
+        <button type="submit">Ajouter une habitude</button>
+    </form>
+
+    <script src="{{ url_for('static', filename='habitstracker.js') }}"></script> <!-- Lien vers votre fichier JavaScript -->
+</body>
+</html>
+

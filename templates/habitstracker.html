@@ -1,30 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tracker d'habitudes</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='habitstracker.css') }}"> <!-- Lien vers votre fichier CSS -->
+  <title>Tracker d'Habitudes</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 <body>
-    <h1>Tracker d'habitudes</h1>
+  <h1>Tracker d'Habitudes</h1>
+  <p>Créez et suivez vos habitudes quotidiennes.</p>
 
-    <div id="habitList">
-        <!-- Zone pour afficher les habitudes -->
-        {% for habit in habits %}
-            <div class="habit">
-                <input type="checkbox" id="{{ habit.id }}" {% if habit.done %}checked{% endif %}>
-                <label for="{{ habit.id }}">{{ habit.name }}</label>
-            </div>
-        {% endfor %}
-    </div>
+  <!-- Habit List -->
+  <ul id="habitList">
+    {% for habit in habits %}
+      <li>{{ habit }}</li>
+    {% endfor %}
+  </ul>
 
-    <form id="addHabitForm">
-        <input type="text" id="habitNameInput" placeholder="Nom de l'habitude">
-        <button type="submit">Ajouter une habitude</button>
-    </form>
+  <!-- Create Habit Form -->
+  <form id="createHabitForm" action="{{ url_for('create_habit') }}" method="POST">
+    <input type="text" name="habit_name" placeholder="Nouvelle habitude" required>
+    <button type="submit">Ajouter</button>
+  </form>
 
-    <script src="{{ url_for('static', filename='habitstracker.js') }}"></script> <!-- Lien vers votre fichier JavaScript -->
+  <script src="{{ url_for('static', filename='js/habitstracker.js') }}"></script>
 </body>
 </html>
-

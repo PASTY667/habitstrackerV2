@@ -1,1 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tracker d'Habitudes - Login</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Tracker d'Habitudes</h1>
+        <h2>Login / Inscription</h2>
+        
+        <form id="loginForm" method="POST" action="{{ url_for('login') }}">
+            <label for="username">Nom d'utilisateur:</label>
+            <input type="text" id="username" name="username" required>
+            
+            <label for="password">Mot de passe:</label>
+            <input type="password" id="password" name="password" required>
+            
+            <input type="submit" value="Se connecter">
+        </form>
+        
+        <p id="errorMessage"></p>
+        
+        <p>Vous n'avez pas de compte ? <a href="#">Inscrivez-vous ici</a></p>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/login.js') }}"></script>
+    <script>
+        var loginUrl = "{{ url_for('login') }}";
+    </script>
+
+</body>
+</html>
  

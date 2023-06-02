@@ -1,1 +1,39 @@
- 
+ <!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Tracker d'habitudes</title>
+  <style>
+    .container {
+      text-align: center;
+      margin-top: 50px;
+    }
+    h1 {
+      font-size: 24px;
+    }
+    p {
+      font-size: 16px;
+    }
+    .buttons {
+      margin-top: 20px;
+    }
+    .buttons button {
+      margin: 10px;
+      padding: 10px 20px;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Tracker d'habitudes</h1>
+    <p>Bienvenue sur le Tracker d'habitudes, un outil simple pour suivre et maintenir vos habitudes quotidiennes.</p>
+    
+    <div class="buttons">
+      <a href="{{ url_for('login') }}"><button>Se connecter</button></a>
+      <a href="{{ url_for('register') }}"><button>S'inscrire</button></a>
+    </div>
+  </div>
+</body>
+</html>
+

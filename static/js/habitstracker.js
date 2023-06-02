@@ -1,9 +1,9 @@
- document.getElementById('createHabitForm').addEventListener('submit', function(event) {
+document.getElementById('createHabitForm').addEventListener('submit', function(event) {
   event.preventDefault();
 
   var habitName = document.getElementById('habitName').value;
 
-  fetch('{{ url_for('create_habit') }}', {
+  fetch('/create_habit', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded'
@@ -28,4 +28,3 @@
     console.log('Erreur :', error);
   });
 });
-

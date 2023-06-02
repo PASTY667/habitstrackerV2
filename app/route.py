@@ -1,6 +1,17 @@
 from flask import Flask, render_template, request, redirect, url_for, jsonify
+from app.models import User
+
 
 app = Flask(__name__)
+
+def add_user(username, password):
+    user = User(username=username, password=password)
+    db.session.add(user)
+    db.session.commit()
+
+def is_username_taken(username):
+    user = User.query.filter_by(username=username).first()
+    return user is not None
 
 @app.route('/')
 def index():

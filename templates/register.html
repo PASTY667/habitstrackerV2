@@ -1,1 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tracker d'Habitudes - Inscription</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Tracker d'Habitudes</h1>
+        <h2>Inscription</h2>
+        
+        <form id="registerForm" method="POST" action="{{ url_for('register') }}">
+            <label for="username">Nom d'utilisateur:</label>
+            <input type="text" id="username" name="username" required>
+            
+            <label for="password">Mot de passe:</label>
+            <input type="password" id="password" name="password" required>
+            
+            <input type="submit" value="S'inscrire">
+        </form>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/register.js') }}"></script>
+</body>
+</html>
  

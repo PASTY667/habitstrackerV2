@@ -1,17 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, jsonify
+from app import app, db
 from app.models import User
-
-
-app = Flask(__name__)
-
-def add_user(username, password):
-    user = User(username=username, password=password)
-    db.session.add(user)
-    db.session.commit()
-
-def is_username_taken(username):
-    user = User.query.filter_by(username=username).first()
-    return user is not None
 
 @app.route('/')
 def index():
@@ -26,9 +15,6 @@ def check_username_availability(username):
     else:
         return False  # Le nom d'utilisateur est disponible
 
-def add_user(username):
-    registered_usernames.append(username)
-
 def check_credentials(username, password):
     # Vérifiez ici les informations d'identification de l'utilisateur
     if username == 'admin' and password == 'password':
@@ -36,7 +22,7 @@ def check_credentials(username, password):
     else:
         return False
 
-@app.route('/')
+@app.route('/home')
 def home():
     return redirect(url_for('login'))
 
@@ -74,7 +60,7 @@ def register():
             error = 'Le nom d\'utilisateur est déjà pris'
             return render_template('register.html', error=error)
 
-        add_user(username)
+        registered_usernames.append(username)
 
         return redirect(url_for('login'))
 
@@ -104,4 +90,3 @@ def habitstracker():
 
 if __name__ == '__main__':
     app.run(debug=True)
- 

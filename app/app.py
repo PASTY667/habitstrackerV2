@@ -1,15 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, jsonify
 from app import app, db
-from app.models import User
+from app.models import db, User, Habit
 import json
-
-def load_config():
-    with open('data/config.json', 'r') as file:
-        config = json.load(file)
-    return config
-
-
-
 
 @app.route('/')
 def index():
@@ -59,6 +51,20 @@ def habitudes():
     
     return render_template('habitudes.html', habits=habits)
 
+def add_user(username, password):
+    user = User(username=username, password=password)
+    db.session.add(user)
+    db.session.commit()
+
+def add_habit(habit_name):
+    habit = Habit(name=habit_name)
+    db.session.add(habit)
+    db.session.commit()
+
+def get_user_habits():
+    # Implémentez cette fonction pour récupérer les habitudes de l'utilisateur depuis la base de données
+    return []
+
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
@@ -69,7 +75,7 @@ def register():
             error = 'Le nom d\'utilisateur est déjà pris'
             return render_template('register.html', error=error)
 
-        registered_usernames.append(username)
+        add_user(username, password)
 
         return redirect(url_for('login'))
 
@@ -85,17 +91,13 @@ def check_username():
 @app.route('/create_habit', methods=['POST'])
 def create_habit():
     habit_name = request.form['habit_name']
-    # Ajoutez ici le code pour enregistrer la nouvelle habitude dans la base de données ou un fichier
-    # Assurez-vous de lier l'habitude à l'utilisateur actuellement connecté
+    add_habit(habit_name)
     return redirect(url_for('habitstracker'))
 
 @app.route('/habitstracker')
 def habitstracker():
-    # Récupérez les habitudes de l'utilisateur depuis la base de données ou un fichier
-    # en fonction de l'utilisateur actuellement connecté
-    habits = get_user_habits()  # Implémentez cette fonction pour récupérer les habitudes de l'utilisateur
+    habits = get_user_habits()
     return render_template('habitstracker.html', habits=habits)
-
 
 if __name__ == '__main__':
     app.run(debug=True)

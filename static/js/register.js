@@ -19,6 +19,7 @@ document.getElementById('registerForm').addEventListener('submit', function(even
     if (data.is_taken) {
       document.getElementById('errorMessage').textContent = 'Le nom d\'utilisateur est déjà pris';
     } else {
+      // Envoyer le formulaire d'inscription
       document.getElementById('registerForm').submit();
     }
   })
@@ -26,4 +27,3 @@ document.getElementById('registerForm').addEventListener('submit', function(even
     console.log('Erreur :', error);
   });
 });
- 

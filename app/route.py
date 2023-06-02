@@ -8,12 +8,7 @@ def load_config():
         config = json.load(file)
     return config
 
-# Utilisation
-config = load_config()
-secret_key = config['secret_key']
-database_uri = config['database_uri']
-api_key = config['api_key']
-# ...
+
 
 
 @app.route('/')

@@ -76,6 +76,21 @@ def check_username():
     response = {'is_taken': is_taken}
     return jsonify(response)
 
+@app.route('/create_habit', methods=['POST'])
+def create_habit():
+    habit_name = request.form['habit_name']
+    # Ajoutez ici le code pour enregistrer la nouvelle habitude dans la base de données ou un fichier
+    # Assurez-vous de lier l'habitude à l'utilisateur actuellement connecté
+    return redirect(url_for('habitstracker'))
+
+@app.route('/habitstracker')
+def habitstracker():
+    # Récupérez les habitudes de l'utilisateur depuis la base de données ou un fichier
+    # en fonction de l'utilisateur actuellement connecté
+    habits = get_user_habits()  # Implémentez cette fonction pour récupérer les habitudes de l'utilisateur
+    return render_template('habitstracker.html', habits=habits)
+
+
 if __name__ == '__main__':
     app.run(debug=True)
  

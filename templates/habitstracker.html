@@ -1,1 +1,26 @@
- 
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tracker d'Habitudes</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+  <h1>Tracker d'Habitudes</h1>
+  <p>Créez et suivez vos habitudes quotidiennes.</p>
+
+  <!-- Habit List -->
+  <ul id="habitList">
+    {% for habit in habits %}
+      <li>{{ habit }}</li>
+    {% endfor %}
+  </ul>
+
+  <!-- Create Habit Form -->
+  <form id="createHabitForm" action="{{ url_for('create_habit') }}" method="POST">
+    <input type="text" name="habit_name" placeholder="Nouvelle habitude" required>
+    <button type="submit">Ajouter</button>
+  </form>
+
+  <script src="{{ url_for('static', filename='js/habitstracker.js') }}"></script>
+</body>
+</html>
